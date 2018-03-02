@@ -3,12 +3,6 @@ package com.apitester.test.stock.eurekaservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-@EnableZuulProxy
 @EnableEurekaServer
 @SpringBootApplication
 public class EurekaServiceApplication {

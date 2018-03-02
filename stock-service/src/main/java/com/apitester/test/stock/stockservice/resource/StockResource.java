@@ -18,6 +18,7 @@ import yahoofinance.quotes.stock.StockQuote;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,10 +33,11 @@ public class StockResource {
         restTemplate = new RestTemplate();
     }
 
-    @GetMapping("/{username}")
-    public List<Quote> getStock(@PathVariable("username") final String userName) {
+    @GetMapping("/getStocks")
+    public List<Quote> getStock(Principal principal) {
+        System.out.println(principal.getName());
 
-        ResponseEntity<List<String>> quoteResponse = restTemplate.exchange("http://db-service/rest/db/" + userName, HttpMethod.GET,
+        ResponseEntity<List<String>> quoteResponse = restTemplate.exchange("http://db-service/rest/db/getQuotes/" + principal.getName(), HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<String>>() {
                 });
         List<String> quotes = quoteResponse.getBody();

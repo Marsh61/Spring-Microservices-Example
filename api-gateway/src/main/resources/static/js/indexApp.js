@@ -1,10 +1,11 @@
+
 var app = angular.module('myApp', []);
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.timeout = 20000;
 }])
 app.controller('myCtrl', function($scope, $http) {
     this.retrieve = function() {
-    $http.get('http://127.0.0.1:8761/api/stock-service/rest/stock/' + $scope.name)
+    $http.get('http://127.0.0.1:80/api/stock-service/rest/stock/getStocks')
     .then(function (response) {
         console.log('inside'+ response);
         $scope.quotes = response.data;
@@ -16,14 +17,17 @@ app.controller('myCtrl', function($scope, $http) {
 
     this.add = function() {
         var message = {
-            userName: $scope.name,
             quotes: [$scope.quote]
         }
-        $http.post('http://127.0.0.1:8761/api/db-service/rest/db/add', message)
+        $http.post('http://127.0.0.1:80/api/db-service/rest/db/add', message)
             .then(function(response) {
                 $scope.quotes = response.data;
             }, function(response) {
                 console.log('error..');
             });
     }
+
+    this.logout = function () {
+        $http.post("logout", function() {});
+        }
 });
