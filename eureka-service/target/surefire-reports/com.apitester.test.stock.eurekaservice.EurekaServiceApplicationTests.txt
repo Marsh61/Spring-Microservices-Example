@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.apitester.test.stock.eurekaservice.EurekaServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.266 sec - in com.apitester.test.stock.eurekaservice.EurekaServiceApplicationTests

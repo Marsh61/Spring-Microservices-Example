@@ -39,7 +39,7 @@ public class ApiGatewayApplication extends WebSecurityConfigurerAdapter {
 	}
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewayApplication.class, args);
+	public static void Start() {
+		SpringApplication.run(ApiGatewayApplication.class);
 	}
 }
