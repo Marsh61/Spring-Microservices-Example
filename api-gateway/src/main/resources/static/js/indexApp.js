@@ -5,7 +5,7 @@ app.config(['$httpProvider', function($httpProvider) {
 }])
 app.controller('myCtrl', function($scope, $http) {
     this.retrieve = function() {
-    $http.get('http://127.0.0.1:80/api/stock-service/rest/stock/getStocks')
+    $http.get('/api/stock-service/rest/stock/getStocks')
     .then(function (response) {
         console.log('inside'+ response);
         $scope.quotes = response.data;
@@ -19,7 +19,7 @@ app.controller('myCtrl', function($scope, $http) {
         var message = {
             quotes: [$scope.quote]
         }
-        $http.post('http://127.0.0.1:80/api/db-service/rest/db/add', message)
+        $http.post('/api/db-service/rest/db/add', message)
             .then(function(response) {
                 $scope.quotes = response.data;
             }, function(response) {

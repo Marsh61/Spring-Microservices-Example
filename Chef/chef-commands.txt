@@ -1,0 +1,21 @@
+#BootStrap
+knife bootstrap 34.212.82.220 --ssh-user ubuntu --sudo --identity-file ../
+../KEY_WINDOWS_COMP.pem --node-name ubuntu-1 --run-list 'recipe[learn_chef_apache2]'
+
+knife bootstrap windows winrm 54.213.123.206 --winrm-user Administrator --
+winrm-password 'gL@Rs6vJ3?YLt%FyA)cQyMha-$4VgIB7' --node-name windows-1 --run-list 'recipe[microservices]'
+
+
+#Upload Cookbooks
+knife upload COOKBOOK
+
+#Upload Roles
+knife role from file ROLE.json
+
+#Set Role
+knife node run_list set <NODE_NAME> "role:<ROLE>"
+
+#Run Cookbooks 
+ #With role 
+	knife ssh 'role:<ROLE>' 'sudo chef-client' --ssh-user USER --identity-file ~/.ssh/private_key --attribute ipaddress
+
